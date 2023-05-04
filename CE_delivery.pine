@@ -1,4 +1,6 @@
 //@version=5
+// Copyright (c) 2019-present, Alex Orekhov (everget)
+// Chandelier Exit script may be freely distributed under the terms of the GPL-3.0 license.
 strategy('Chandelier Exit', shorttitle='CE', overlay=true)
 
 useDateFilter = input.bool(true, title="Begin Backtest at Start Date",
@@ -60,7 +62,7 @@ if inTradeWindow
     strategy.entry('long', strategy.long, when=buySignal)
     strategy.entry('short', strategy.short, when=sellSignal)
 
-if strategy.position_size > 0 and close < open
+if strategy.position_size > 0 and close < open and sellSignal
     strategy.close('long')
-if strategy.position_size < 0 and close > open
+if strategy.position_size < 0 and close > open and buySignal
     strategy.close('short')
