@@ -62,7 +62,7 @@ if inTradeWindow
     strategy.entry('long', strategy.long, when=buySignal)
     strategy.entry('short', strategy.short, when=sellSignal)
 
-if strategy.position_size > 0 and close < open and sellSignal
+if strategy.position_size > 0 and close < open
     strategy.close('long')
-if strategy.position_size < 0 and close > open and buySignal
+if strategy.position_size < 0 and close > open
     strategy.close('short')
